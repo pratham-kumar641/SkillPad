@@ -15,7 +15,7 @@ const seedData = async () => {
     await mongoose.connect(process.env.MONGO_URI);
     console.log('Connected to MongoDB for seeding...');
 
-    // Clear existing data
+    
     await User.deleteMany({});
     await Task.deleteMany({});
     await Sprint.deleteMany({});
@@ -24,11 +24,11 @@ const seedData = async () => {
 
     console.log('Cleared existing data.');
 
-    // Hash default password
+    
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash('123456', salt);
 
-    // Create Users
+    
     const student1 = await User.create({
       name: 'Aman Sharma',
       email: 'student@gmail.com',
@@ -69,7 +69,7 @@ const seedData = async () => {
 
     console.log('Users created.');
 
-    // Only core users are seeded now. Default tasks and projects removed.
+    
     console.log('🎉 Seed completed successfully!');
     process.exit(0);
   } catch (err) {

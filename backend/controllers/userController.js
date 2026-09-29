@@ -3,7 +3,7 @@ const Task = require('../models/Task');
 const Project = require('../models/Project');
 const Submission = require('../models/Submission');
 
-// Get all students
+
 const getStudents = async (req, res) => {
   try {
     const students = await User.find({ role: 'Student' }).select('-password');
@@ -14,7 +14,7 @@ const getStudents = async (req, res) => {
   }
 };
 
-// Get student detail portfolio
+
 const getStudentPortfolio = async (req, res) => {
   try {
     const student = await User.findById(req.params.id).select('-password');

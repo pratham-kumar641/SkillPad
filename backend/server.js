@@ -3,21 +3,21 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 
-// Load env vars
+
 dotenv.config();
 
-// Connect to database
+
 connectDB();
 
 const app = express();
 
-// Body parser
+
 app.use(express.json());
 
-// Enable CORS
+
 app.use(cors());
 
-// Mount routers
+
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/tasks', require('./routes/taskRoutes'));
 app.use('/api/sprints', require('./routes/sprintRoutes'));
@@ -26,7 +26,7 @@ app.use('/api/submissions', require('./routes/submissionRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/code', require('./routes/codeRoutes'));
 
-// Basic route
+
 app.get('/', (req, res) => {
   res.send('SkillPad API is running');
 });

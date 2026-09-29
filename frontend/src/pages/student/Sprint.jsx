@@ -67,7 +67,7 @@ const Sprint = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Todo Column */}
+        {}
         <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 min-h-[500px]">
           <h3 className="font-semibold text-gray-900 mb-4 flex items-center justify-between">
             Todo
@@ -92,7 +92,7 @@ const Sprint = () => {
           </div>
         </div>
 
-        {/* In Progress Column */}
+        {}
         <div className="bg-blue-50/30 p-4 rounded-lg border border-blue-100 min-h-[500px]">
           <h3 className="font-semibold text-gray-900 mb-4 flex items-center justify-between">
             In Progress
@@ -123,7 +123,7 @@ const Sprint = () => {
           </div>
         </div>
 
-        {/* Completed Column */}
+        {}
         <div className="bg-green-50/30 p-4 rounded-lg border border-green-100 min-h-[500px]">
           <h3 className="font-semibold text-gray-900 mb-4 flex items-center justify-between">
             Completed

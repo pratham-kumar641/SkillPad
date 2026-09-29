@@ -1,8 +1,8 @@
 const Submission = require('../models/Submission');
 
-// @desc    Get all submissions
-// @route   GET /api/submissions
-// @access  Private
+
+
+
 const getSubmissions = async (req, res) => {
   try {
     const submissions = await Submission.find().populate('studentId', 'name email').populate('taskId');
@@ -13,9 +13,9 @@ const getSubmissions = async (req, res) => {
   }
 };
 
-// @desc    Create a submission
-// @route   POST /api/submissions
-// @access  Private
+
+
+
 const createSubmission = async (req, res) => {
   try {
     const newSubmission = new Submission({
@@ -31,9 +31,9 @@ const createSubmission = async (req, res) => {
   }
 };
 
-// @desc    Update a submission
-// @route   PUT /api/submissions/:id
-// @access  Private
+
+
+
 const updateSubmission = async (req, res) => {
   try {
     let submission = await Submission.findById(req.params.id);

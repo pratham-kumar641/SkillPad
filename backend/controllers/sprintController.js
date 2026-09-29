@@ -1,6 +1,6 @@
 const Sprint = require('../models/Sprint');
 
-// Get all sprints
+
 const getSprints = async (req, res) => {
   try {
     const sprints = await Sprint.find().populate('tasks');
@@ -11,7 +11,7 @@ const getSprints = async (req, res) => {
   }
 };
 
-// Create a sprint
+
 const createSprint = async (req, res) => {
   try {
     const { name, goal, startDate, endDate, tasks } = req.body;
@@ -32,7 +32,7 @@ const createSprint = async (req, res) => {
   }
 };
 
-// Update a sprint
+
 const updateSprint = async (req, res) => {
   try {
     const { id } = req.params;
@@ -50,7 +50,7 @@ const updateSprint = async (req, res) => {
   }
 };
 
-// Delete a sprint
+
 const deleteSprint = async (req, res) => {
   try {
     const { id } = req.params;

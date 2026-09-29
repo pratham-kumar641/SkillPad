@@ -43,28 +43,28 @@ async function runFullSiteTest() {
   ];
 
   try {
-    // ----------------------------------------------------
-    // 1. ROUTE ACCESSIBILITY (SPA ROUTING & VITE SERVING)
-    // ----------------------------------------------------
+    
+    
+    
     console.log('📌 1. Testing HTTP & SPA Route Delivery (23 Frontend Routes)...');
     for (const route of routes) {
       const res = await fetch(`http://localhost:5173${route}`);
       assert(res.status === 200, `Route [${route}] served with HTTP 200`);
     }
 
-    // ----------------------------------------------------
-    // 2. BACKEND API HEALTH & CONNECTIVITY
-    // ----------------------------------------------------
+    
+    
+    
     console.log('\n📌 2. Testing Backend Health & API Root...');
     const apiRoot = await fetch('http://localhost:5000/');
     const apiText = await apiRoot.text();
     assert(apiRoot.status === 200 && apiText.includes('SkillPad API is running'), 'Backend API Root is active');
 
-    // ----------------------------------------------------
-    // 3. COMPLETE STUDENT WORKFLOW TEST
-    // ----------------------------------------------------
+    
+    
+    
     console.log('\n📌 3. Simulating Student Workflow...');
-    // Login
+    
     const stuLoginRes = await fetch('http://localhost:5000/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -74,7 +74,7 @@ async function runFullSiteTest() {
     assert(stuLoginRes.status === 200 && stuLogin.token, 'Student logged in successfully');
     const stuToken = stuLogin.token;
 
-    // Student runs code
+    
     const runRes = await fetch('http://localhost:5000/api/code/run', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${stuToken}` },
@@ -83,7 +83,7 @@ async function runFullSiteTest() {
     const runData = await runRes.json();
     assert(runRes.status === 200 && runData.output, 'Student code execution completed');
 
-    // Student requests AI review
+    
     const revRes = await fetch('http://localhost:5000/api/code/review', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${stuToken}` },
@@ -92,7 +92,7 @@ async function runFullSiteTest() {
     const revData = await revRes.json();
     assert(revRes.status === 200 && revData.review, 'Student received AI Code Review');
 
-    // Student submits new project
+    
     const projRes = await fetch('http://localhost:5000/api/projects', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${stuToken}` },
@@ -106,11 +106,11 @@ async function runFullSiteTest() {
     const newProj = await projRes.json();
     assert(projRes.status === 200 && newProj._id, `Student submitted project (ID: ${newProj._id})`);
 
-    // ----------------------------------------------------
-    // 4. COMPLETE FACULTY WORKFLOW TEST
-    // ----------------------------------------------------
+    
+    
+    
     console.log('\n📌 4. Simulating Faculty Workflow...');
-    // Login
+    
     const facLoginRes = await fetch('http://localhost:5000/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -120,7 +120,7 @@ async function runFullSiteTest() {
     assert(facLoginRes.status === 200 && facLogin.token, 'Faculty logged in successfully');
     const facToken = facLogin.token;
 
-    // Faculty creates task
+    
     const taskRes = await fetch('http://localhost:5000/api/tasks', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${facToken}` },
@@ -135,7 +135,7 @@ async function runFullSiteTest() {
     const newTask = await taskRes.json();
     assert(taskRes.status === 201 && newTask._id, `Faculty created engineering task (ID: ${newTask._id})`);
 
-    // Faculty reviews student project
+    
     const evalRes = await fetch(`http://localhost:5000/api/projects/${newProj._id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${facToken}` },
@@ -148,11 +148,11 @@ async function runFullSiteTest() {
     const evalData = await evalRes.json();
     assert(evalRes.status === 200 && evalData.status === 'Reviewed' && evalData.score === 98, 'Faculty evaluated & scored student project (Score: 98)');
 
-    // ----------------------------------------------------
-    // 5. COMPLETE RECRUITER WORKFLOW TEST
-    // ----------------------------------------------------
+    
+    
+    
     console.log('\n📌 5. Simulating Recruiter Workflow...');
-    // Login
+    
     const recLoginRes = await fetch('http://localhost:5000/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -162,7 +162,7 @@ async function runFullSiteTest() {
     assert(recLoginRes.status === 200 && recLogin.token, 'Recruiter logged in successfully');
     const recToken = recLogin.token;
 
-    // Recruiter views verified projects
+    
     const recProjectsRes = await fetch('http://localhost:5000/api/projects', {
       headers: { 'Authorization': `Bearer ${recToken}` }
     });
@@ -170,7 +170,7 @@ async function runFullSiteTest() {
     const foundReviewed = recProjects.find(p => p._id === newProj._id);
     assert(recProjectsRes.status === 200 && foundReviewed && foundReviewed.score === 98, 'Recruiter sees faculty-verified project and score in talent pool');
 
-    // Recruiter views talent list
+    
     const recStudentsRes = await fetch('http://localhost:5000/api/users/students', {
       headers: { 'Authorization': `Bearer ${recToken}` }
     });

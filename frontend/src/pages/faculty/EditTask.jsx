@@ -26,8 +26,8 @@ const EditTask = () => {
   const fetchTask = async () => {
     try {
       const token = localStorage.getItem('token');
-      // Using the get all tasks endpoint and finding it since we don't have a get task by id endpoint,
-      // or we can just fetch all and filter. For simplicity, we'll fetch all and find.
+      
+      
       const response = await fetch('http://localhost:5000/api/tasks', {
         headers: {
           'Authorization': `Bearer ${token}`
@@ -37,7 +37,7 @@ const EditTask = () => {
       if (response.ok) {
         const task = data.find(t => t._id === id);
         if (task) {
-          // Format date for input type="date"
+          
           let formattedDate = '';
           if (task.deadline) {
             const dateObj = new Date(task.deadline);

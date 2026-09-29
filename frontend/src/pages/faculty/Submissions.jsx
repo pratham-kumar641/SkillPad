@@ -68,7 +68,7 @@ const Submissions = () => {
         const updated = await response.json();
         setProjectsList(prev => prev.map(p => (p._id === updated._id || p.id === selectedProject.id) ? { ...p, score: updated.score, feedback: updated.feedback, status: 'Reviewed' } : p));
       } else {
-        // Fallback local update
+        
         setProjectsList(prev => prev.map(p => (p.id === selectedProject.id || p._id === selectedProject._id) ? { ...p, score: Number(score), feedback, status: 'Reviewed' } : p));
       }
     } catch (error) {

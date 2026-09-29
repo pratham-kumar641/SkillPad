@@ -1,4 +1,4 @@
-// Code Execution & AI Review Controller
+
 const vm = require('vm');
 
 const runCode = async (req, res) => {
@@ -8,7 +8,7 @@ const runCode = async (req, res) => {
       return res.status(400).json({ message: 'Code is required' });
     }
 
-    // Try Judge0 API if configured, otherwise fallback to local execution
+    
     if (process.env.JUDGE0_API_KEY) {
       try {
         const response = await fetch('https://judge0-ce.p.rapidapi.com/submissions?wait=true', {
@@ -34,7 +34,7 @@ const runCode = async (req, res) => {
       }
     }
 
-    // Local JavaScript execution using Node's VM module
+    
     if (!language || language === 'javascript') {
       const outputLogs = [];
       const customConsole = {
@@ -68,7 +68,7 @@ const runCode = async (req, res) => {
       }
     }
 
-    // Python basic evaluation
+    
     if (language === 'python') {
       const lines = code.split('\n');
       for (let i = 0; i < lines.length; i++) {
@@ -129,7 +129,7 @@ const reviewCode = async (req, res) => {
       }
     }
 
-    // Default AI Feedback for viva demo
+    
     return res.json({
       review: `🤖 Gemini Code Review:
 1. Readability: Code structure is clean and follows simple guidelines.

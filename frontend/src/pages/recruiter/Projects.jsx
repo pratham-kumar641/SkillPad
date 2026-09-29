@@ -33,7 +33,7 @@ const Projects = () => {
     }
   };
 
-  // Only show reviewed/completed projects for recruiters
+  
   const verifiedProjects = projectsList.filter(p => p.status === 'Reviewed');
   
   const filteredProjects = verifiedProjects.filter(p => 

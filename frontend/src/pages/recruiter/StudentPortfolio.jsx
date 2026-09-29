@@ -74,7 +74,7 @@ const StudentPortfolio = () => {
         <div className="p-8 text-center text-gray-500">Loading portfolios...</div>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Student List */}
+          {}
           <div className="lg:col-span-1 bg-white rounded-xl shadow-sm border border-gray-200 flex flex-col overflow-hidden">
             <div className="p-4 border-b border-gray-200">
               <div className="relative">
@@ -113,7 +113,7 @@ const StudentPortfolio = () => {
             </div>
           </div>
 
-          {/* Portfolio Details */}
+          {}
           {selectedStudent && (
             <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-200 p-6 md:p-8">
               <div className="flex flex-col md:flex-row md:items-start gap-6 mb-8 border-b border-gray-100 pb-8">

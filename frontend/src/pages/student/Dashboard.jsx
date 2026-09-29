@@ -19,7 +19,7 @@ const Dashboard = () => {
         const userStr = localStorage.getItem('user');
         const user = userStr ? JSON.parse(userStr) : null;
         
-        // Fetch Tasks
+        
         const tasksRes = await fetch('http://localhost:5000/api/tasks', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
@@ -28,7 +28,7 @@ const Dashboard = () => {
           setTasks(tasksData);
         }
 
-        // Fetch Projects (submissions)
+        
         const projRes = await fetch('http://localhost:5000/api/projects', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
